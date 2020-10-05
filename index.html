@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Javascript</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="col col-sm-12 col-md-12 col-lg-12 container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCar" onclick="resetTitleAdd()">Agregar Carro</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Color</th>
+            <th scope="col">Año</th>
+            <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody id="cars-tab-body">
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+    <!----------Modal para agregar carros----------->
+    <div class="modal fade" id="addCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Añadir un carro</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div id="title-alert-add" class="col col-sm-12 col-md-12 col-lg-12"></div>
+                <form>
+                    <div class="form-group">
+                      <label for="marca_add">Marca</label>
+                      <input type="text" class="form-control" id="marca_add" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="modelo_add">Modelo</label>
+                      <input type="text" class="form-control" id="modelo_add">
+                    </div>
+                    <div class="form-group">
+                        <label for="color_add">Color</label>
+                        <input type="text" class="form-control" id="color_add">
+                    </div>
+                    <div class="form-group">
+                        <label for="year_add">Año</label>
+                        <input type="text" class="form-control" id="year_add">
+                    </div>
+                    <div class="form-group">
+                        <label for="praice_add">Precio</label>
+                        <input type="text" class="form-control" id="praice_add">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" onclick="addCar()">Añadir</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!----------Modal para editar carros----------->
+    <div class="modal fade" id="editCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header container">
+              <h5 class="modal-title" id="exampleModalLabel">Editar un carro</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                
+              <div id="title-alert-edit" class="col col-sm-12 col-md-12 col-lg-12"></div>
+                <form>
+                    <div class="form-group">
+                      <label for="marca_edit">Marca</label>
+                      <input type="text" class="form-control" id="marca_edit" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="modelo_edit">Modelo</label>
+                      <input type="text" class="form-control" id="modelo_edit">
+                    </div>
+                    <div class="form-group">
+                        <label for="color_edit">Color</label>
+                        <input type="text" class="form-control" id="color_edit">
+                    </div>
+                    <div class="form-group">
+                        <label for="year_edit">Año</label>
+                        <input type="text" class="form-control" id="year_edit">
+                    </div>
+                    <div class="form-group">
+                        <label for="praice_edit">Precio</label>
+                        <input type="text" class="form-control" id="praice_edit">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" onclick="editCar()">Guardar cambios</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!----------Modal para elimina carros----------->
+    <div class="modal fade" id="deleteCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header container">
+              <h5 class="modal-title" id="exampleModalLabel">Eliminar un carro</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                
+              <div id="title-alert-delete" class="col col-sm-12 col-md-12 col-lg-12"></div>
+                <form>
+                    <div class="form-group">
+                      <label for="marca_delete">Marca</label>
+                      <input type="text" class="form-control" id="marca_delete" aria-describedby="emailHelp" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="modelo_delete">Modelo</label>
+                      <input type="text" class="form-control" id="modelo_delete" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="color_delete">Color</label>
+                        <input type="text" class="form-control" id="color_delete" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="year_delete">Año</label>
+                        <input type="text" class="form-control" id="year_delete" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="praice_delete">Precio</label>
+                        <input type="text" class="form-control" id="praice_delete" readonly>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-danger" onclick="deleteCar()">Eliminar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
