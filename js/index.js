@@ -46,8 +46,10 @@ function addCar(){
     let years = document.getElementById('year_add').value;
     let praice= document.getElementById('praice_add').value;
 
+    var idAsigna = listCars[listCars.length - 1].id + 1 || 1;
+
     const newCar = {
-        id: listCars.length + 1,
+        id: idAsigna,
         marca: marca,
         modelo: modelo,
         color: color,
